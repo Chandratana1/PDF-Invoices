@@ -10,8 +10,18 @@ for filepath in filepaths:
     pdf = FPDF(orientation="P", unit="mm", format = "A4")
     pdf.add_page()
     filename = Path(filepath).stem
-    invoice_nr = filename.split('-')[0]
+    #invoice_nr = filename.split('-')[0]
+    #date_nr = filename.split('-')[1]
 
+    invoice_nr, date_nr = filename.split("-")
+
+    print(date_nr)
     pdf.set_font(family="Times", size=16, style="B")
-    pdf.cell(w=50 ,h=8,  txt = f"Invoice nr.{invoice_nr}" )
+    pdf.cell(w=50 ,h=8,  txt = f"Invoice nr.{invoice_nr}" ,ln=1)
+    pdf.set_font(family="Times", size=16, style="B")
+    pdf.cell(w=50 ,h=8,  txt = f"Date:{date_nr}" )
+
+
+
+
     pdf.output(f"PDFs/{filename}.pdf")
